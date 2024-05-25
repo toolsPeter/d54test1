@@ -1,17 +1,15 @@
-import 'dart:async';
-
 import 'package:d54test1/addpage.dart';
 import 'package:d54test1/loginpage.dart';
 import 'package:flutter/material.dart';
-import 'package:d54test1/Database/Manager/accountmanager.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 class homepage extends StatefulWidget {
   // const homepage({super.key});
 
   final String Email;
-  final String nickname ;
+  final String nickname;
+  final int id;
 
-  homepage({required this.Email, required this.nickname});
+  homepage({required this.Email, required this.nickname,required this.id});
 
   @override
   State<homepage> createState() => _homepageState();
@@ -20,12 +18,14 @@ class homepage extends StatefulWidget {
 class _homepageState extends State<homepage> {
   late String _account;
   late String _nickname;
+  late int _id;
 
   @override
   void initState() {
     super.initState();
     _account = widget.Email;
     _nickname = widget.nickname;
+    _id = widget.id;
   }
 
   Widget build(BuildContext context) {
@@ -46,7 +46,8 @@ class _homepageState extends State<homepage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>addpage()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => addpage(id: _id,)));
         },
         child: Icon(Icons.add),
         backgroundColor: Color(0xff009688),
@@ -130,7 +131,8 @@ class _homepageState extends State<homepage> {
                                         ElevatedButton(
                                             onPressed: () {
                                               Navigator.pop(context);
-                                            }, child: Text("取消"))
+                                            },
+                                            child: Text("取消"))
                                       ],
                                     );
                                   });

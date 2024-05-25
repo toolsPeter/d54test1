@@ -11,10 +11,10 @@ class loginpage extends StatefulWidget {
 }
 
 class _loginpageState extends State<loginpage> {
-  @override
   TextEditingController _account = TextEditingController();
   TextEditingController _password = TextEditingController();
   bool _sxf = true;
+  @override
 
   Widget build(BuildContext context) {
     var screenheight = MediaQuery.sizeOf(context).height;
@@ -116,7 +116,8 @@ class _loginpageState extends State<loginpage> {
                                     .query(_account.text);
                                 if (_passwordcheck[0]["password"].toString() == _password.text) {
                                   var nickname = _passwordcheck[0]["nickname"].toString();
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>homepage(Email:_account.text,nickname: nickname,)));
+                                  var id = int.parse(_passwordcheck[0]["id"].toString());
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>homepage(Email:_account.text,nickname: nickname,id: id,)));
                                 } else {
                                   showDialog(
                                       context: context,

@@ -2,15 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class addpage extends StatefulWidget {
-  const addpage({super.key});
-
+  // const addpage({super.key});
+  final int id;
+  addpage({required this.id});
   @override
   State<addpage> createState() => _addpageState();
 }
 
 class _addpageState extends State<addpage> {
-  @override
   bool _swictch = false;
+  late int _id;
+  @override
+  void initState(){
+    super.initState();
+      _id = widget.id;
+
+  }
 
   Widget build(BuildContext context) {
     var width = MediaQuery.sizeOf(context).width;

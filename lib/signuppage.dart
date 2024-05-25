@@ -10,7 +10,6 @@ class signuppage extends StatefulWidget {
 }
 
 class _signuppageState extends State<signuppage> {
-  @override
   TextEditingController _nickname = TextEditingController();
   TextEditingController _account = TextEditingController();
   TextEditingController _password = TextEditingController();
@@ -26,6 +25,7 @@ class _signuppageState extends State<signuppage> {
   bool _sxf = true;
   bool _sxf2 = true;
   var _reg = RegExp(r'\w+@\w+(\.\w+)+$');
+  @override
 
   Widget build(BuildContext context) {
     var Screenwidth = MediaQuery.sizeOf(context).width;

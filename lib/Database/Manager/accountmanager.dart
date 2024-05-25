@@ -1,9 +1,7 @@
 import 'package:d54test1/Database/Databasehelper.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:d54test1/Database/Data/accountData.dart';
 
 class accountmanager {
-  bool _queryaccount = true;
 
   accountmanager.private();
 

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class addpage extends StatefulWidget {
@@ -48,26 +49,22 @@ class _addpageState extends State<addpage> {
               SizedBox(
                 height: 20,
               ),
-              TextField(
-                decoration: InputDecoration(
-                    hintText: "密碼",
-                    suffixIcon: IconButton(
-                        onPressed: () {},
-                        icon: Row(
-                          children: [
-                            Icon(Icons.visibility_off),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Icon(
-                              Icons.auto_fix_high,
-                              color: Colors.black,
-                            ),
-                          ],
-                        )),
-                    // suffix: IconButton(
-                    //     onPressed: () {}, icon: Icon(Icons.visibility_off))
-                      ),
+              Stack(
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: "密碼",
+                    ),
+                  ),
+                  Positioned(
+                      right: 0,
+                      child: IconButton(
+                          onPressed: () {}, icon: Icon(Icons.auto_fix_high))),
+                  Positioned(
+                      right: 35,
+                      child: IconButton(
+                          onPressed: () {}, icon: Icon(Icons.visibility_off)))
+                ],
               ),
               SizedBox(
                 height: 20,
@@ -79,21 +76,32 @@ class _addpageState extends State<addpage> {
               SizedBox(
                 height: 30,
               ),
-              Row(
+              Stack(
                 children: [
-                  Text(
-                    "我的最愛",
-                    style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                  Container(
+                    height: 30,
+                    width: width * 0.8,
+                    child: Positioned(
+                      left: 0,
+                      child: Text(
+                        "我的最愛",
+                        style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                      ),
+                    ),
                   ),
-                  Switch(
-                      value: _swictch,
-                      activeColor: Colors.green,
-                      activeTrackColor: Colors.green[200],
-                      onChanged: (value) {
-                        setState(() {
-                          _swictch = value;
-                        });
-                      })
+                  Positioned(
+                    height: 30,
+                    right: 0,
+                    child: Switch(
+                        value: _swictch,
+                        activeColor: Colors.green,
+                        activeTrackColor: Colors.green[200],
+                        onChanged: (value) {
+                          setState(() {
+                            _swictch = value;
+                          });
+                        }),
+                  )
                 ],
               ),
               Divider(

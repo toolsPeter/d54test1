@@ -10,6 +10,7 @@ class homepage extends StatefulWidget {
 
   final String Email;
   final String nickname ;
+
   homepage({required this.Email, required this.nickname});
 
   @override

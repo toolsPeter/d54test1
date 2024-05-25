@@ -42,7 +42,8 @@ class databasehelper {
     "username" Text,
     "password" Text,
     "URL" Text,
-    "favourite" Integer 
+    "favourite" Integer,
+    "accountid" Integer
     )
     ''');
   }

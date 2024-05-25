@@ -4,8 +4,9 @@ class Datamanager {
   final String? password;
   final String? URL;
   final int? favourite;
+  final int? accountid;
 
-  Datamanager({this.projectname, this.username, this.password, this.URL, this.favourite});
+  Datamanager({this.projectname, this.username, this.password, this.URL, this.favourite,this.accountid});
 
   Map<String,dynamic> Tomap(){
     return {
@@ -13,7 +14,8 @@ class Datamanager {
       "username":username,
       "password":password,
       "URL":URL,
-      "favourite":favourite
+      "favourite":favourite,
+      "accountid":accountid
     };
   }
 }

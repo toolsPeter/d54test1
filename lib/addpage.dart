@@ -31,7 +31,7 @@ class _addpageState extends State<addpage> {
               onPressed: () {},
               child: Text(
                 "儲存",
-                style: TextStyle(color: Colors.white, fontSize: 15),
+                style: TextStyle(color: Colors.white, fontSize: 15,),
               ))
         ],
         automaticallyImplyLeading: false,

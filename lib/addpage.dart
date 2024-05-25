@@ -1,34 +1,47 @@
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:d54test1/Database/Manager/Datamanager.dart';
 
 class addpage extends StatefulWidget {
   // const addpage({super.key});
   final int id;
+
   addpage({required this.id});
+
   @override
   State<addpage> createState() => _addpageState();
 }
 
 class _addpageState extends State<addpage> {
-  bool _swictch = false;
+  bool _favourite = false;
   late int _id;
-  @override
-  void initState(){
-    super.initState();
-      _id = widget.id;
+  TextEditingController _projectname = TextEditingController();
+  TextEditingController _username = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  TextEditingController _URL = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    _id = widget.id;
   }
 
   Widget build(BuildContext context) {
-    var width = MediaQuery.sizeOf(context).width;
-    var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery
+        .sizeOf(context)
+        .width;
+    var height = MediaQuery
+        .sizeOf(context)
+        .height;
 
     return Scaffold(
       appBar: AppBar(
         title: Text("新增項目"),
         actions: [
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                datamanager.instance.insurt(_projectname.text, _username.text, _password.text, _URL.text, _favourite?1:0, _id);
+              },
               child: Text(
                 "儲存",
                 style: TextStyle(color: Colors.white, fontSize: 15,),
@@ -44,12 +57,14 @@ class _addpageState extends State<addpage> {
           child: Column(
             children: [
               TextField(
+                controller: _projectname,
                 decoration: InputDecoration(hintText: "項目名稱"),
               ),
               SizedBox(
                 height: 20,
               ),
               TextField(
+                controller:  _username,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(hintText: "使用者名稱"),
               ),
@@ -59,6 +74,7 @@ class _addpageState extends State<addpage> {
               Stack(
                 children: [
                   TextField(
+                    controller: _password,
                     decoration: InputDecoration(
                       hintText: "密碼",
                     ),
@@ -77,6 +93,7 @@ class _addpageState extends State<addpage> {
                 height: 20,
               ),
               TextField(
+                controller: _URL,
                 keyboardType: TextInputType.url,
                 decoration: InputDecoration(hintText: "網址"),
               ),
@@ -100,12 +117,12 @@ class _addpageState extends State<addpage> {
                     height: 30,
                     right: 0,
                     child: Switch(
-                        value: _swictch,
+                        value: _favourite,
                         activeColor: Colors.green,
                         activeTrackColor: Colors.green[200],
                         onChanged: (value) {
                           setState(() {
-                            _swictch = value;
+                            _favourite = value;
                           });
                         }),
                   )
@@ -114,7 +131,10 @@ class _addpageState extends State<addpage> {
               Divider(
                 color: Colors.grey,
                 thickness: 1,
-              )
+              ),
+              ElevatedButton(onPressed: () {
+                datamanager.instance.query(_projectname.text);
+              }, child: Text("ppppppx"))
             ],
           ),
         ),

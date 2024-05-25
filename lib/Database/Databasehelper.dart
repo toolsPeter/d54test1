@@ -49,7 +49,7 @@ class databasehelper {
 
   Future<int> insert(String Table ,Map<String, dynamic> row) async {
     var db = await instance.database;
-    return db.insert(_table, row);
+    return db.insert(Table, row);
   }
 
   Future<List<Map<String, Object?>>> query(String Table ,String account) async {
@@ -61,4 +61,10 @@ class databasehelper {
     var db = await instance.database;
     return db.delete(_table, where: "account=?", whereArgs: [account]);
   }
+
+  Future<List<Map<String, Object?>>> dataquery(String Table ,String projectname) async {
+    var db = await instance.database;
+    return db.query(Table,where: "projectname = ?",whereArgs: [projectname]);
+  }
+
 }

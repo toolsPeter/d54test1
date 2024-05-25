@@ -1,4 +1,4 @@
-class Datamanager {
+class Datadata {
   final String? projectname;
   final String? username;
   final String? password;
@@ -6,7 +6,7 @@ class Datamanager {
   final int? favourite;
   final int? accountid;
 
-  Datamanager({this.projectname, this.username, this.password, this.URL, this.favourite,this.accountid});
+  Datadata({this.projectname, this.username, this.password, this.URL, this.favourite,this.accountid});
 
   Map<String,dynamic> Tomap(){
     return {

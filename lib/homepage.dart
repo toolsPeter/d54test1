@@ -47,7 +47,7 @@ class _homepageState extends State<homepage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => addpage(id: _id,)));
+              context, MaterialPageRoute(builder: (context) => addpage(id: _id)));
         },
         child: Icon(Icons.add),
         backgroundColor: Color(0xff009688),

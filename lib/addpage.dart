@@ -9,8 +9,8 @@ class addpage extends StatefulWidget {
 }
 
 class _addpageState extends State<addpage> {
-  @override
   bool _swictch = false;
+  @override
 
   Widget build(BuildContext context) {
     var width = MediaQuery.sizeOf(context).width;

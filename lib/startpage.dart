@@ -1,4 +1,3 @@
-import 'package:d54test1/main.dart';
 import 'package:flutter/material.dart';
 import 'package:d54test1/loginpage.dart';
 
@@ -13,7 +12,6 @@ class _startpageState extends State<startpage> {
   @override
   Widget build(BuildContext context) {
     var screenheight = MediaQuery.sizeOf(context).height;
-    var screenwidth = MediaQuery.sizeOf(context).width;
     Future.delayed(Duration(seconds: 3), () {
       if (mounted) {
         Navigator.pushReplacement(

@@ -1,4 +1,3 @@
-import 'package:d54test1/main.dart';
 import 'package:flutter/material.dart';
 import 'package:d54test1/startpage.dart';
 
@@ -14,13 +13,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        useMaterial3: false,
-        drawerTheme: DrawerThemeData(
-          scrimColor: Color(0x00000000)
-        )
-      ),
+          useMaterial3: false,
+          drawerTheme: DrawerThemeData(scrimColor: Color(0x00000000))),
       home: const startpage(),
     );
   }
 }
-

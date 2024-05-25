@@ -1,15 +1,12 @@
-import 'dart:async';
-
 import 'package:d54test1/addpage.dart';
 import 'package:d54test1/loginpage.dart';
 import 'package:flutter/material.dart';
-import 'package:d54test1/Database/Manager/accountmanager.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 class homepage extends StatefulWidget {
   // const homepage({super.key});
 
   final String Email;
-  final String nickname ;
+  final String nickname;
 
   homepage({required this.Email, required this.nickname});
 
@@ -46,7 +43,8 @@ class _homepageState extends State<homepage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>addpage()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => addpage()));
         },
         child: Icon(Icons.add),
         backgroundColor: Color(0xff009688),
@@ -130,7 +128,8 @@ class _homepageState extends State<homepage> {
                                         ElevatedButton(
                                             onPressed: () {
                                               Navigator.pop(context);
-                                            }, child: Text("取消"))
+                                            },
+                                            child: Text("取消"))
                                       ],
                                     );
                                   });

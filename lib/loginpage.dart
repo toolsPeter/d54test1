@@ -11,10 +11,10 @@ class loginpage extends StatefulWidget {
 }
 
 class _loginpageState extends State<loginpage> {
-  @override
   TextEditingController _account = TextEditingController();
   TextEditingController _password = TextEditingController();
   bool _sxf = true;
+  @override
 
   Widget build(BuildContext context) {
     var screenheight = MediaQuery.sizeOf(context).height;

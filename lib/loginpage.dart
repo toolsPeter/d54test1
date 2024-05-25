@@ -117,7 +117,7 @@ class _loginpageState extends State<loginpage> {
                                 if (_passwordcheck[0]["password"].toString() == _password.text) {
                                   var nickname = _passwordcheck[0]["nickname"].toString();
                                   var id = int.parse(_passwordcheck[0]["id"].toString());
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>homepage(Email:_account.text,nickname: nickname,id: id,)));
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>homepage(Email:_account.text,nickname: nickname,id: id)));
                                 } else {
                                   showDialog(
                                       context: context,

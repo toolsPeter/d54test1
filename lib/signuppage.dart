@@ -118,7 +118,7 @@ class _signuppageState extends State<signuppage> {
                       borderSide: BorderSide(color: Colors.black)),
                   hintText: "主密碼",
                   hintStyle: TextStyle(color: Colors.grey),
-                  suffix: GestureDetector(
+                  suffixIcon: GestureDetector(
                     onLongPress: () {
                       setState(() {
                         _sxf = false;
@@ -129,7 +129,7 @@ class _signuppageState extends State<signuppage> {
                         _sxf = true;
                       });
                     },
-                    child: Icon(_sxf ? Icons.visibility : Icons.visibility_off),
+                    child: Icon(_sxf ? Icons.visibility_off : Icons.visibility),
                   )),
             ),
           ),
@@ -161,7 +161,7 @@ class _signuppageState extends State<signuppage> {
                       borderSide: BorderSide(color: Colors.black)),
                   hintText: "確認主密碼",
                   hintStyle: TextStyle(color: Colors.grey),
-                  suffix: GestureDetector(
+                  suffixIcon: GestureDetector(
                     onLongPress: () {
                       setState(() {
                         _sxf2 = false;
@@ -173,7 +173,7 @@ class _signuppageState extends State<signuppage> {
                       });
                     },
                     child:
-                        Icon(_sxf2 ? Icons.visibility : Icons.visibility_off),
+                        Icon(_sxf2 ? Icons.visibility_off : Icons.visibility),
                   )),
             ),
           ),

@@ -80,7 +80,7 @@ class _loginpageState extends State<loginpage> {
                               borderSide: BorderSide(color: Colors.black)),
                           hintText: "主密碼",
                           hintStyle: TextStyle(color: Colors.grey),
-                          suffix: GestureDetector(
+                          suffixIcon: GestureDetector(
                             onLongPress: () {
                               setState(() {
                                 _sxf = false;
@@ -91,8 +91,8 @@ class _loginpageState extends State<loginpage> {
                                 _sxf = true;
                               });
                             },
-                            child: Icon(
-                                _sxf ? Icons.visibility_off : Icons.visibility),
+                            child:
+                            Icon(_sxf ? Icons.visibility_off : Icons.visibility,color: Colors.black,),
                           )),
                     ),
                   ),

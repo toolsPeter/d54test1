@@ -1,9 +1,8 @@
-// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:d54test1/Database/Manager/Datamanager.dart';
+import 'package:flutter/services.dart';
 
 class addpage extends StatefulWidget {
-  // const addpage({super.key});
   final int id;
 
   addpage({required this.id});
@@ -19,8 +18,11 @@ class _addpageState extends State<addpage> {
   TextEditingController _username = TextEditingController();
   TextEditingController _password = TextEditingController();
   TextEditingController _URL = TextEditingController();
-  bool _passwordvis = true;
+  bool _URLcheck = false;
+  var _URLerror = "";
+  var _reg =RegExp(r'^(https?:\/\/)?([a-z,A-Z,0-9,-,_]+\.)+[a-z,A-Z]{2,6}$');
 
+  bool _passwordvis = true;
   @override
   void initState() {
     super.initState();
@@ -57,7 +59,7 @@ class _addpageState extends State<addpage> {
           child: Column(
             children: [
               TextField(
-                maxLength: 100,
+                inputFormatters: [LengthLimitingTextInputFormatter(100)],
                 controller: _projectname,
                 decoration: InputDecoration(hintText: "項目名稱"),
               ),
@@ -65,7 +67,7 @@ class _addpageState extends State<addpage> {
                 height: 20,
               ),
               TextField(
-                maxLength: 100,
+                inputFormatters: [LengthLimitingTextInputFormatter(100)],
                 controller:  _username,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(hintText: "使用者名稱"),
@@ -76,7 +78,7 @@ class _addpageState extends State<addpage> {
               Stack(
                 children: [
                   TextField(
-                maxLength: 100,
+                    inputFormatters: [LengthLimitingTextInputFormatter(100)],
                     controller: _password,
                     obscureText: _passwordvis,
                     decoration: InputDecoration(
@@ -89,16 +91,17 @@ class _addpageState extends State<addpage> {
                           onPressed: () {}, icon: Icon(Icons.auto_fix_high))),
                   Positioned(
                       right: 40,
-                      height: 50,
+                      height: 40,
+                      bottom: 0,
                       child: GestureDetector(
                         onLongPress: (){
                           setState(() {
-                            _passwordvis =!_passwordvis;
+                            _passwordvis =false;
                           });
                         },
                         onLongPressUp: (){
                           setState(() {
-                            _passwordvis =!_passwordvis;
+                            _passwordvis =true;
                           });
                         },
                         child: Icon(_passwordvis ? Icons.visibility_off:Icons.visibility),
@@ -109,27 +112,35 @@ class _addpageState extends State<addpage> {
                 height: 20,
               ),
               TextField(
-                maxLength: 100,
+                inputFormatters: [LengthLimitingTextInputFormatter(100)],
                 controller: _URL,
                 keyboardType: TextInputType.url,
-                decoration: InputDecoration(hintText: "網址"),
+                decoration: InputDecoration(hintText: "網址",
+                errorText: _URLcheck? _URLerror:null),
+                onChanged: (value){
+                  print(_URL.text);
+                    print(_reg.hasMatch(value));
+                  setState(() {
+                    _URLcheck = false;
+                  });
+                  if(!_reg.hasMatch(_URL.text)){
+                  setState(() {
+                    _URLerror = "請輸入正確網址格式";
+                    _URLcheck = true;
+                  });
+                  }
+                },
               ),
               SizedBox(
                 height: 30,
               ),
               Stack(
                 children: [
-                  Container(
-                    height: 30,
-                    width: width * 0.8,
-                    child: Positioned(
-                      left: 0,
-                      child: Text(
-                        "我的最愛",
-                        style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-                      ),
-                    ),
-                  ),
+                  Positioned(
+                      child: Container(
+                        height: 30,
+                      width: width * 0.8,
+                          child: Text("我的最愛",style: TextStyle(fontSize: 16, color: Colors.grey[600])))),
                   Positioned(
                     height: 30,
                     right: 0,
@@ -149,9 +160,6 @@ class _addpageState extends State<addpage> {
                 color: Colors.grey,
                 thickness: 1,
               ),
-              ElevatedButton(onPressed: () {
-                datamanager.instance.query(_projectname.text);
-              }, child: Text("ppppppx"))
             ],
           ),
         ),

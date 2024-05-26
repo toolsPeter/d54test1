@@ -19,6 +19,7 @@ class _addpageState extends State<addpage> {
   TextEditingController _username = TextEditingController();
   TextEditingController _password = TextEditingController();
   TextEditingController _URL = TextEditingController();
+  bool _passwordvis = true;
 
   @override
   void initState() {
@@ -47,7 +48,6 @@ class _addpageState extends State<addpage> {
                 style: TextStyle(color: Colors.white, fontSize: 15,),
               ))
         ],
-        automaticallyImplyLeading: false,
         backgroundColor: Color(0xff009688),
       ),
       body: Center(
@@ -57,6 +57,7 @@ class _addpageState extends State<addpage> {
           child: Column(
             children: [
               TextField(
+                maxLength: 100,
                 controller: _projectname,
                 decoration: InputDecoration(hintText: "項目名稱"),
               ),
@@ -64,6 +65,7 @@ class _addpageState extends State<addpage> {
                 height: 20,
               ),
               TextField(
+                maxLength: 100,
                 controller:  _username,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(hintText: "使用者名稱"),
@@ -74,7 +76,9 @@ class _addpageState extends State<addpage> {
               Stack(
                 children: [
                   TextField(
+                maxLength: 100,
                     controller: _password,
+                    obscureText: _passwordvis,
                     decoration: InputDecoration(
                       hintText: "密碼",
                     ),
@@ -84,15 +88,28 @@ class _addpageState extends State<addpage> {
                       child: IconButton(
                           onPressed: () {}, icon: Icon(Icons.auto_fix_high))),
                   Positioned(
-                      right: 35,
-                      child: IconButton(
-                          onPressed: () {}, icon: Icon(Icons.visibility_off)))
+                      right: 40,
+                      height: 50,
+                      child: GestureDetector(
+                        onLongPress: (){
+                          setState(() {
+                            _passwordvis =!_passwordvis;
+                          });
+                        },
+                        onLongPressUp: (){
+                          setState(() {
+                            _passwordvis =!_passwordvis;
+                          });
+                        },
+                        child: Icon(_passwordvis ? Icons.visibility_off:Icons.visibility),
+                      ))
                 ],
               ),
               SizedBox(
                 height: 20,
               ),
               TextField(
+                maxLength: 100,
                 controller: _URL,
                 keyboardType: TextInputType.url,
                 decoration: InputDecoration(hintText: "網址"),

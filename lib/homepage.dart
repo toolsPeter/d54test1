@@ -121,11 +121,7 @@ class _homepageState extends State<homepage> {
                                         ElevatedButton(
                                             onPressed: () {
                                               Navigator.pop(context);
-                                              Navigator.pushReplacement(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          loginpage()));
+                                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => loginpage()));
                                             },
                                             child: Text("確定")),
                                         ElevatedButton(

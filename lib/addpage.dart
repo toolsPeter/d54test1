@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:d54test1/Database/Manager/Datamanager.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
 class addpage extends StatefulWidget {
@@ -22,6 +23,7 @@ class _addpageState extends State<addpage> {
   bool _URLcheck = false;
   var _URLerror = "";
   var _reg = RegExp(r'^(https?:\/\/)?([a-z,A-Z,0-9,-,_]+\.)+[a-z,A-Z]{2,6}$');
+  double _val = 0;
 
   bool _passwordvis = true;
 
@@ -34,6 +36,7 @@ class _addpageState extends State<addpage> {
   Widget build(BuildContext context) {
     var width = MediaQuery.sizeOf(context).width;
     var height = MediaQuery.sizeOf(context).height;
+    List<TextSpan> _span = [TextSpan(text: "@",style: TextStyle(color: Colors.red)),TextSpan(text: "jasodjf",style: TextStyle(color: Colors.black))];
 
     return Scaffold(
       appBar: AppBar(
@@ -98,7 +101,7 @@ class _addpageState extends State<addpage> {
                                 builder: (BuildContext) {
                                   return Container(
                                     height: height*0.88,
-                                    child: Scaffold(
+                                    child:Scaffold(
                                       body: Stack(
                                         children: [
                                           Positioned(
@@ -108,8 +111,8 @@ class _addpageState extends State<addpage> {
                                               child: Center(
                                                 child: Container(
                                                   decoration: BoxDecoration(
-                                                    color: Colors.grey,
-                                                    borderRadius: BorderRadius.circular(10.0)
+                                                      color: Colors.grey,
+                                                      borderRadius: BorderRadius.circular(10.0)
                                                   ),
                                                   width: 50,
                                                   height: 10,
@@ -131,10 +134,16 @@ class _addpageState extends State<addpage> {
                                               child: Container(
                                                 height: height*0.1,
                                                 decoration: BoxDecoration(
-                                                  border: Border.all(color: Colors.grey,width: 1.0,),
-                                                  borderRadius: BorderRadius.circular(10)
+                                                    border: Border.all(color: Colors.grey,width: 1.0,),
+                                                    borderRadius: BorderRadius.circular(10)
                                                 ),
-                                              ))
+                                                child: Center(child:RichText(text: TextSpan(children: _span))),
+                                              )),
+                                          Slider(value: _val, onChanged: (double value){
+                                            setState(() {
+                                              _val = value;
+                                            });
+                                          })
                                         ],
                                       ),
                                     ),

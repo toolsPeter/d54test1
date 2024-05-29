@@ -44,6 +44,7 @@ class _addpageState extends State<addpage> {
         actions: [
           TextButton(
               onPressed: () {
+                Navigator.pop(context);
                 datamanager.instance.insurt(_projectname.text, _username.text,
                     _password.text, _URL.text, _favourite ? 1 : 0, _id);
               },

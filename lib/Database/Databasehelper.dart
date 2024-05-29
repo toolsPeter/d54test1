@@ -45,6 +45,7 @@ class databasehelper {
     "accountid" Integer
     )
     ''');
+
   }
 
   Future<int> insert(String Table ,Map<String, dynamic> row) async {
@@ -62,9 +63,9 @@ class databasehelper {
     return db.delete(_table, where: "account=?", whereArgs: [account]);
   }
 
-  Future<List<Map<String, Object?>>> dataquery(String Table ,String projectname) async {
+  Future<List<Map<String, Object?>>> dataquery(String Table ,String accountid) async {
     var db = await instance.database;
-    return db.query(Table,where: "projectname = ?",whereArgs: [projectname]);
+    return db.query(Table,where: "accountid = ?",whereArgs: [accountid]);
   }
 
 }

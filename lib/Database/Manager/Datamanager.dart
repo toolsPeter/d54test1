@@ -13,10 +13,8 @@ class datamanager {
     var Data = Datadata(projectname: projectname,username: username,password: password,URL: URL,favourite: favourite,accountid:accountid);
     await dbhelper.insert(_datatable,Data.Tomap());
   }
-  void query(String projectname)async{
-    var Data = await dbhelper.dataquery(_datatable, projectname);
-    Data.forEach((element) {
-      print(element);
-    });
+  Future<List<Map<String, dynamic>>> query(String accountid)async{
+    var Data = await dbhelper.dataquery(_datatable, accountid);
+    return Data;
   }
 }

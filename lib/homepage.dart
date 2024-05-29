@@ -1,6 +1,8 @@
 import 'package:d54test1/addpage.dart';
 import 'package:d54test1/loginpage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:d54test1/Database/Manager/Datamanager.dart';
 
 class homepage extends StatefulWidget {
   // const homepage({super.key});
@@ -9,7 +11,7 @@ class homepage extends StatefulWidget {
   final String nickname;
   final int id;
 
-  homepage({required this.Email, required this.nickname,required this.id});
+  homepage({required this.Email, required this.nickname, required this.id});
 
   @override
   State<homepage> createState() => _homepageState();
@@ -27,8 +29,10 @@ class _homepageState extends State<homepage> {
     _nickname = widget.nickname;
     _id = widget.id;
   }
+  TextEditingController _search = TextEditingController();
 
   Widget build(BuildContext context) {
+    var _data = datamanager.instance.query(_id.toString());
     var height = MediaQuery.sizeOf(context).height;
     var width = MediaQuery.sizeOf(context).width;
     return Scaffold(
@@ -45,9 +49,12 @@ class _homepageState extends State<homepage> {
         title: Text("我的密碼庫"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => addpage(id: _id)));
+        onPressed: () async{
+          await Navigator.push(context,
+              MaterialPageRoute(builder: (context) => addpage(id: _id)));
+          setState(() {
+
+          });
         },
         child: Icon(Icons.add),
         backgroundColor: Color(0xff009688),
@@ -121,7 +128,11 @@ class _homepageState extends State<homepage> {
                                         ElevatedButton(
                                             onPressed: () {
                                               Navigator.pop(context);
-                                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => loginpage()));
+                                              Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          loginpage()));
                                             },
                                             child: Text("確定")),
                                         ElevatedButton(
@@ -163,11 +174,34 @@ class _homepageState extends State<homepage> {
             top: height * 0.01,
             width: width,
             child: TextField(
+              controller: _search,
               decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(50.0))),
-            ))
+            )),
+        Positioned(
+          top: height*0.08,
+            height: height*0.8,
+            width: width,
+            child: FutureBuilder<List>(
+            future: _data,
+            builder: (context, listdata) {
+              if(listdata.data!.length==0){
+                return Center(
+                  child: Text("目前尚未擁有資料",style: TextStyle(color: Colors.black),),
+                );
+              }
+              return ListView.builder(
+                  itemCount: listdata.data!.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(listdata.data![index]["projectname"].toString()),
+                      onTap: (){},
+                    );
+                  });
+            })
+        )
       ]),
     );
   }

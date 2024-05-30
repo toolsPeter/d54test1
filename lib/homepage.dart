@@ -29,6 +29,7 @@ class _homepageState extends State<homepage> {
     _nickname = widget.nickname;
     _id = widget.id;
   }
+
   TextEditingController _search = TextEditingController();
 
   Widget build(BuildContext context) {
@@ -49,12 +50,10 @@ class _homepageState extends State<homepage> {
         title: Text("我的密碼庫"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async{
+        onPressed: () async {
           await Navigator.push(context,
               MaterialPageRoute(builder: (context) => addpage(id: _id)));
-          setState(() {
-
-          });
+          setState(() {});
         },
         child: Icon(Icons.add),
         backgroundColor: Color(0xff009688),
@@ -175,33 +174,85 @@ class _homepageState extends State<homepage> {
             width: width,
             child: TextField(
               controller: _search,
+              onChanged: (value) {
+                setState(() {
+                  ;
+                });
+              },
               decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(50.0))),
             )),
         Positioned(
-          top: height*0.08,
-            height: height*0.8,
+            top: height * 0.08,
+            height: height * 0.8,
             width: width,
             child: FutureBuilder<List>(
-            future: _data,
-            builder: (context, listdata) {
-              if(listdata.data!.length==0){
-                return Center(
-                  child: Text("目前尚未擁有資料",style: TextStyle(color: Colors.black),),
-                );
-              }
-              return ListView.builder(
-                  itemCount: listdata.data!.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(listdata.data![index]["projectname"].toString()),
-                      onTap: (){},
+                future: _data,
+                builder: (context, listdata) {
+                  var favourite = [];
+                  var unfavourite = [];
+                  var d = [];
+                  for (int i = 0; i < listdata.data!.length; i++) {
+                    if (listdata.data![i]["projectname"]
+                        .toString()
+                        .contains(_search.text)) {
+                      d.add(listdata.data![i]);
+                    }
+                  }
+                  if (d.length == 0) {
+                    return Center(
+                      child: Text(
+                        "目前尚未擁有資料",
+                        style: TextStyle(color: Colors.black),
+                      ),
                     );
-                  });
-            })
-        )
+                  }
+
+                  for (int i = 0; i < d.length; i++) {
+                    if (d[i]["favourite"] == 1) {
+                      favourite.add(d[i]);
+                    } else {
+                      unfavourite.add(d[i]);
+                    }
+                  }
+
+                  return ListView(
+                    children: [
+                      ListTile(
+                        subtitle: Text("我的最愛"),
+                      ),
+                      Divider(),
+                      for (Map index in favourite)
+                        Column(
+                          children: [
+                            ListTile(
+                              title: Text(index["projectname"].toString()),
+                              subtitle: Text(index["username".toString()]),
+                              onTap: () {},
+                            ),
+                            Divider(),
+                          ],
+                        ),
+                      ListTile(
+                        subtitle: Text("其他項目"),
+                      ),
+                      Divider(),
+                      for (Map index in unfavourite)
+                        Column(
+                          children: [
+                            ListTile(
+                              title: Text(index["projectname"].toString()),
+                              subtitle: Text(index["username".toString()]),
+                              onTap: () {},
+                            ),
+                            Divider(),
+                          ],
+                        ),
+                    ],
+                  );
+                }))
       ]),
     );
   }

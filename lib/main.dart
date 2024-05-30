@@ -9,6 +9,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
           drawerTheme: DrawerThemeData(scrimColor: Color(0x00000000))),
 
       // home: const startpage(),
-      home: const loginpage(),
+      home: const startpage(),
     );
+
   }
 }

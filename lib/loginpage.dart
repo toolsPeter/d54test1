@@ -14,8 +14,8 @@ class _loginpageState extends State<loginpage> {
   TextEditingController _account = TextEditingController();
   TextEditingController _password = TextEditingController();
   bool _sxf = true;
-  @override
 
+  @override
   Widget build(BuildContext context) {
     var screenheight = MediaQuery.sizeOf(context).height;
     var screenwidgh = MediaQuery.sizeOf(context).width;
@@ -91,8 +91,10 @@ class _loginpageState extends State<loginpage> {
                                 _sxf = true;
                               });
                             },
-                            child:
-                            Icon(_sxf ? Icons.visibility_off : Icons.visibility,color: Colors.black,),
+                            child: Icon(
+                              _sxf ? Icons.visibility_off : Icons.visibility,
+                              color: Colors.black,
+                            ),
                           )),
                     ),
                   ),
@@ -114,10 +116,19 @@ class _loginpageState extends State<loginpage> {
                                 var _passwordcheck = await accountmanager
                                     .instance
                                     .query(_account.text);
-                                if (_passwordcheck[0]["password"].toString() == _password.text) {
-                                  var nickname = _passwordcheck[0]["nickname"].toString();
-                                  var id = int.parse(_passwordcheck[0]["id"].toString());
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>homepage(Email:_account.text,nickname: nickname,id: id)));
+                                if (_passwordcheck[0]["password"].toString() ==
+                                    _password.text) {
+                                  var nickname =
+                                      _passwordcheck[0]["nickname"].toString();
+                                  var id = int.parse(
+                                      _passwordcheck[0]["id"].toString());
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => homepage(
+                                              Email: _account.text,
+                                              nickname: nickname,
+                                              id: id)));
                                 } else {
                                   showDialog(
                                       context: context,
@@ -190,4 +201,3 @@ class _loginpageState extends State<loginpage> {
     );
   }
 }
-

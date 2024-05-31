@@ -199,12 +199,21 @@ class _homepageState extends State<homepage> {
                   var favourite = [];
                   var unfavourite = [];
                   var d = [];
+                  if(listdata.data!=null){
                   for (int i = 0; i < listdata.data!.length; i++) {
                     if (listdata.data![i]["projectname"]
                         .toString()
                         .contains(_search.text)) {
                       d.add(listdata.data![i]);
                     }
+                  }
+                  }else{
+                    return Center(
+                      child: Text(
+                        "目前尚未擁有資料",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    );
                   }
                   if (d.length == 0) {
                     return Center(

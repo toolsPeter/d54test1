@@ -221,9 +221,9 @@ class _homepageState extends State<homepage> {
                   return ListView(
                     children: [
                       ListTile(
-                        subtitle: Text("我的最愛"),
+                        title: Text("我的最愛",style: TextStyle(fontSize: 13,color: Colors.grey),),
                       ),
-                      Divider(),
+                      Divider(color: Colors.black,),
                       for (Map index in favourite)
                         Column(
                           children: [
@@ -232,13 +232,13 @@ class _homepageState extends State<homepage> {
                               subtitle: Text(index["username".toString()]),
                               onTap: () {},
                             ),
-                            Divider(),
+                            Divider(color: Colors.black,),
                           ],
                         ),
                       ListTile(
-                        subtitle: Text("其他項目"),
+                        title: Text("其他項目",style: TextStyle(fontSize: 13,color: Colors.grey),),
                       ),
-                      Divider(),
+                      Divider(color: Colors.black,),
                       for (Map index in unfavourite)
                         Column(
                           children: [
@@ -247,7 +247,7 @@ class _homepageState extends State<homepage> {
                               subtitle: Text(index["username".toString()]),
                               onTap: () {},
                             ),
-                            Divider(),
+                            Divider(color: Colors.black,),
                           ],
                         ),
                     ],

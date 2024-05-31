@@ -252,7 +252,8 @@ class _homepageState extends State<homepage> {
                             ListTile(
                               title: Text(index["projectname"].toString()),
                               subtitle: Text(index["username".toString()]),
-                              onTap: () {},
+                              onTap: () {
+                              },
                             ),
                             Divider(color: Colors.black,),
                           ],

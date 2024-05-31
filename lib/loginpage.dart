@@ -2,6 +2,7 @@ import 'package:d54test1/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:d54test1/Database/Manager/accountmanager.dart';
 import 'package:d54test1/signuppage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class loginpage extends StatefulWidget {
   const loginpage({super.key});
@@ -19,6 +20,7 @@ class _loginpageState extends State<loginpage> {
   Widget build(BuildContext context) {
     var screenheight = MediaQuery.sizeOf(context).height;
     var screenwidgh = MediaQuery.sizeOf(context).width;
+
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
@@ -122,6 +124,8 @@ class _loginpageState extends State<loginpage> {
                                       _passwordcheck[0]["nickname"].toString();
                                   var id = int.parse(
                                       _passwordcheck[0]["id"].toString());
+                                  var autologin = await SharedPreferences.getInstance();
+                                  autologin.setString("autologin", _account.text);
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(

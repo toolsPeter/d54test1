@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:d54test1/loginpage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:d54test1/Database/Manager/Datamanager.dart';
 
 class startpage extends StatefulWidget {
   const startpage({super.key});
@@ -12,10 +14,12 @@ class _startpageState extends State<startpage> {
   @override
   Widget build(BuildContext context) {
     var screenheight = MediaQuery.sizeOf(context).height;
-    Future.delayed(Duration(seconds: 3), () {
-      if (mounted) {
+    Future.delayed(Duration(seconds: 3), () async{
+      var autologin = await SharedPreferences.getInstance();
+      if (autologin.getString("autologin")==null || autologin.getString("autologin")==-1) {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => loginpage()));
+      }else{
       }
     });
     return Scaffold(

@@ -104,7 +104,12 @@ class _homepageState extends State<homepage> {
                     child: Container(
                         width: width * 0.3,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              DateTime time = new DateTime.now();
+                              for(int i = 0 ; i<=10;i++){
+                              print("${time.year}/${time.month}/${time.day} ${time.hour}:${time.minute}");
+                              }
+                            },
                             child: Text(
                               "匯入密碼",
                               style: TextStyle(fontSize: 15),
@@ -230,7 +235,9 @@ class _homepageState extends State<homepage> {
                             ListTile(
                               title: Text(index["projectname"].toString()),
                               subtitle: Text(index["username".toString()]),
-                              onTap: () {},
+                              onTap: () {
+                                print(index["date"].toString());
+                              },
                             ),
                             Divider(color: Colors.black,),
                           ],

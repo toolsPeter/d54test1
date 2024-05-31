@@ -44,9 +44,11 @@ class _addpageState extends State<addpage> {
         actions: [
           TextButton(
               onPressed: () {
+                DateTime date = new DateTime.now();
+                var _time ="${date.year}/${date.month}/${date.day} ${date.hour}:${date.minute}";
                 Navigator.pop(context);
                 datamanager.instance.insurt(_projectname.text, _username.text,
-                    _password.text, _URL.text, _favourite ? 1 : 0, _id);
+                    _password.text, _URL.text, _favourite ? 1 : 0,_time, _id);
               },
               child: Text(
                 "儲存",

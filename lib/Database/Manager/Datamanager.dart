@@ -9,8 +9,8 @@ class datamanager {
   var dbhelper = databasehelper.instance;
 
   void insurt(String projectname, String username, String password, String URL,
-      int favourite, int accountid) async{
-    var Data = Datadata(projectname: projectname,username: username,password: password,URL: URL,favourite: favourite,accountid:accountid);
+      int favourite,String date, int accountid) async{
+    var Data = Datadata(projectname: projectname,username: username,password: password,URL: URL,favourite: favourite,date: date,accountid:accountid);
     await dbhelper.insert(_datatable,Data.Tomap());
   }
   Future<List<Map<String, dynamic>>> query(String accountid)async{

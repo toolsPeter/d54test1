@@ -4,9 +4,10 @@ class Datadata {
   final String? password;
   final String? URL;
   final int? favourite;
+  final String? date;
   final int? accountid;
 
-  Datadata({this.projectname, this.username, this.password, this.URL, this.favourite,this.accountid});
+  Datadata({this.projectname, this.username, this.password, this.URL, this.favourite,this.date,this.accountid});
 
   Map<String,dynamic> Tomap(){
     return {
@@ -15,6 +16,7 @@ class Datadata {
       "password":password,
       "URL":URL,
       "favourite":favourite,
+      "date":date,
       "accountid":accountid
     };
   }

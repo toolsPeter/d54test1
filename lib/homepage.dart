@@ -3,6 +3,7 @@ import 'package:d54test1/loginpage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:d54test1/Database/Manager/Datamanager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class homepage extends StatefulWidget {
   // const homepage({super.key});
@@ -130,7 +131,9 @@ class _homepageState extends State<homepage> {
                                       title: Text("確定登出"),
                                       actions: [
                                         ElevatedButton(
-                                            onPressed: () {
+                                            onPressed: () async{
+                                              var autologin =await SharedPreferences.getInstance();
+                                              autologin.setString("autologin", "-1");
                                               Navigator.pop(context);
                                               Navigator.pushReplacement(
                                                   context,

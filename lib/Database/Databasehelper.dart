@@ -37,6 +37,7 @@ class databasehelper {
     ''');
     await db.execute('''
     create Table $_datatable(
+    "id" Integer,
     "projectname" Text,
     "username" Text,
     "password" Text,
@@ -68,5 +69,9 @@ class databasehelper {
     var db = await instance.database;
     return db.query(Table,where: "accountid = ?",whereArgs: [accountid]);
   }
-
+  Future<int> Updata(String table ,Map<String,dynamic>row)async{
+    var db = await instance.database;
+    var idd = row["id"];
+    return db.update(table, row,where: "id = ?",whereArgs: [row]);
+  }
 }

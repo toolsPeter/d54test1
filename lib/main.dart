@@ -1,4 +1,3 @@
-import 'package:d54test1/loginpage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:d54test1/startpage.dart';
@@ -17,7 +16,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: false,
           drawerTheme: DrawerThemeData(scrimColor: Color(0x00000000))),
-
       // home: const startpage(),
       home: const startpage(),
     );

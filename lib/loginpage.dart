@@ -182,7 +182,7 @@ class _loginpageState extends State<loginpage> {
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.grey[350]),
                               onPressed: () {
-                                Navigator.pushReplacement(
+                                Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (Contexr) => signuppage()));

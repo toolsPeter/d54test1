@@ -1,10 +1,9 @@
-import 'dart:ffi';
-
 import 'package:d54test1/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:d54test1/loginpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:d54test1/Database/Manager/accountmanager.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class startpage extends StatefulWidget {
   const startpage({super.key});
@@ -14,6 +13,13 @@ class startpage extends StatefulWidget {
 }
 
 class _startpageState extends State<startpage> {
+
+  @override
+  void initState() {
+    _permission();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenheight = MediaQuery.sizeOf(context).height;
@@ -29,7 +35,7 @@ class _startpageState extends State<startpage> {
         int _id = int.parse(data[0]["id"].toString());
         var _Email = data[0]["account"].toString();
         var _nickname = data[0]["nickname"].toString();
-        Navigator.push(
+        Navigator.pushReplacement(
             context,
             MaterialPageRoute(
                 builder: (context) =>
@@ -61,5 +67,10 @@ class _startpageState extends State<startpage> {
                 )),
           ],
         ));
+  }
+
+  void _permission() async{
+    Permission permission = Permission.storage;
+    permission.request();
   }
 }

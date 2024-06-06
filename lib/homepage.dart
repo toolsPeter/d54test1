@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:d54test1/addpage.dart';
 import 'package:d54test1/loginpage.dart';
 import 'package:flutter/cupertino.dart';
@@ -92,8 +94,11 @@ class _homepageState extends State<homepage> {
                     child: Container(
                         width: width * 0.3,
                         child: ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
+                            onPressed: () async{
+                              var output =JsonEncoder().convert(await _data);
+                              print(output);
+                            },
+                            child: const Text(
                               "匯出密碼",
                               style: TextStyle(fontSize: 15),
                             ))),
@@ -106,12 +111,8 @@ class _homepageState extends State<homepage> {
                         width: width * 0.3,
                         child: ElevatedButton(
                             onPressed: () {
-                              DateTime time = new DateTime.now();
-                              for(int i = 0 ; i<=10;i++){
-                              print("${time.year}/${time.month}/${time.day} ${time.hour}:${time.minute}");
-                              }
                             },
-                            child: Text(
+                            child: const Text(
                               "匯入密碼",
                               style: TextStyle(fontSize: 15),
                             ))),
@@ -128,7 +129,7 @@ class _homepageState extends State<homepage> {
                                   context: context,
                                   builder: (dialog) {
                                     return AlertDialog(
-                                      title: Text("確定登出"),
+                                      title: const Text("確定登出"),
                                       actions: [
                                         ElevatedButton(
                                             onPressed: () async{
@@ -151,7 +152,7 @@ class _homepageState extends State<homepage> {
                                     );
                                   });
                             },
-                            child: Text(
+                            child: const Text(
                               "登出",
                               style: TextStyle(fontSize: 15),
                             ))),
@@ -164,12 +165,12 @@ class _homepageState extends State<homepage> {
                         width: width * 0.3,
                         child: ElevatedButton(
                           onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red),
                           child: Text(
                             "刪除帳號",
                             style: TextStyle(fontSize: 15),
                           ),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red),
                         )),
                   )),
             ],
@@ -211,7 +212,7 @@ class _homepageState extends State<homepage> {
                     }
                   }
                   }else{
-                    return Center(
+                    return const Center(
                       child: Text(
                         "目前尚未擁有資料",
                         style: TextStyle(color: Colors.black),
@@ -219,7 +220,7 @@ class _homepageState extends State<homepage> {
                     );
                   }
                   if (d.length == 0) {
-                    return Center(
+                    return const Center(
                       child: Text(
                         "目前尚未擁有資料",
                         style: TextStyle(color: Colors.black),
@@ -237,7 +238,7 @@ class _homepageState extends State<homepage> {
 
                   return ListView(
                     children: [
-                      ListTile(
+                      const ListTile(
                         title: Text("我的最愛",style: TextStyle(fontSize: 13,color: Colors.grey),),
                       ),
                       Divider(color: Colors.black,),
@@ -251,10 +252,10 @@ class _homepageState extends State<homepage> {
                                 print(index["date"].toString());
                               },
                             ),
-                            Divider(color: Colors.black,),
+                            const Divider(color: Colors.black,),
                           ],
                         ),
-                      ListTile(
+                      const ListTile(
                         title: Text("其他項目",style: TextStyle(fontSize: 13,color: Colors.grey),),
                       ),
                       Divider(color: Colors.black,),
@@ -267,7 +268,7 @@ class _homepageState extends State<homepage> {
                               onTap: () {
                               },
                             ),
-                            Divider(color: Colors.black,),
+                            const Divider(color: Colors.black,),
                           ],
                         ),
                     ],

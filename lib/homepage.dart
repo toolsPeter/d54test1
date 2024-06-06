@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:d54test1/viewpage.dart';
 import 'package:d54test1/addpage.dart';
 import 'package:d54test1/loginpage.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,9 +13,9 @@ class homepage extends StatefulWidget {
 
   final String Email;
   final String nickname;
-  final int id;
+  final int accountid;
 
-  homepage({required this.Email, required this.nickname, required this.id});
+  homepage({required this.Email, required this.nickname, required this.accountid});
 
   @override
   State<homepage> createState() => _homepageState();
@@ -23,20 +24,20 @@ class homepage extends StatefulWidget {
 class _homepageState extends State<homepage> {
   late String _account;
   late String _nickname;
-  late int _id;
+  late int _accountid;
 
   @override
   void initState() {
     super.initState();
     _account = widget.Email;
     _nickname = widget.nickname;
-    _id = widget.id;
+    _accountid = widget.accountid;
   }
 
   TextEditingController _search = TextEditingController();
 
   Widget build(BuildContext context) {
-    var _data = datamanager.instance.query(_id.toString());
+    var _data = datamanager.instance.query(_accountid.toString());
     var height = MediaQuery.sizeOf(context).height;
     var width = MediaQuery.sizeOf(context).width;
     return Scaffold(
@@ -55,7 +56,7 @@ class _homepageState extends State<homepage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(context,
-              MaterialPageRoute(builder: (context) => addpage(id: _id)));
+              MaterialPageRoute(builder: (context) => addpage(accountid: _accountid)));
           setState(() {});
         },
         child: Icon(Icons.add),
@@ -248,8 +249,14 @@ class _homepageState extends State<homepage> {
                             ListTile(
                               title: Text(index["projectname"].toString()),
                               subtitle: Text(index["username".toString()]),
-                              onTap: () {
-                                print(index["date"].toString());
+                              onTap: () async{
+                                var data = await datamanager.instance.queryview(index["id"]);
+                                var projectname = data[0]["projectname"].toString();
+                                var username = data[0]["username"].toString();
+                                var password = data[0]["password"].toString();
+                                var url = data[0]["URL"].toString();
+                                var date = data[0]["date"].toString();
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>viewpage(projectname: projectname, username: username, password: password, URL: url, date: date)));
                               },
                             ),
                             const Divider(color: Colors.black,),
@@ -265,7 +272,14 @@ class _homepageState extends State<homepage> {
                             ListTile(
                               title: Text(index["projectname"].toString()),
                               subtitle: Text(index["username".toString()]),
-                              onTap: () {
+                              onTap: () async{
+                                var data = await datamanager.instance.queryview(index["id"]);
+                                var projectname = data[0]["projectname"].toString();
+                                var username = data[0]["username"].toString();
+                                var password = data[0]["password"].toString();
+                                var url = data[0]["URL"].toString();
+                                var date = data[0]["date"].toString();
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>viewpage(projectname: projectname, username: username, password: password, URL: url, date: date)));
                               },
                             ),
                             const Divider(color: Colors.black,),

@@ -5,9 +5,9 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
 class addpage extends StatefulWidget {
-  final int id;
+  final int accountid;
 
-  addpage({required this.id});
+  addpage({required this.accountid});
 
   @override
   State<addpage> createState() => _addpageState();
@@ -15,7 +15,7 @@ class addpage extends StatefulWidget {
 
 class _addpageState extends State<addpage> {
   bool _favourite = false;
-  late int _id;
+  late int _accountid;
   TextEditingController _projectname = TextEditingController();
   TextEditingController _username = TextEditingController();
   TextEditingController _password = TextEditingController();
@@ -30,7 +30,7 @@ class _addpageState extends State<addpage> {
   @override
   void initState() {
     super.initState();
-    _id = widget.id;
+    _accountid = widget.accountid;
   }
 
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class _addpageState extends State<addpage> {
                 var _time ="${date.year}/${date.month}/${date.day} ${date.hour}:${date.minute}";
                 Navigator.pop(context);
                 datamanager.instance.insurt(_projectname.text, _username.text,
-                    _password.text, _URL.text, _favourite ? 1 : 0,_time, _id);
+                    _password.text, _URL.text, _favourite ? 1 : 0,_time, _accountid);
               },
               child: Text(
                 "儲存",

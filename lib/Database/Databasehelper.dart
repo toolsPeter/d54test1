@@ -37,7 +37,7 @@ class databasehelper {
     ''');
     await db.execute('''
     create Table $_datatable(
-    "id" Integer,
+    "id" Integer primary key autoincrement,
     "projectname" Text,
     "username" Text,
     "password" Text,
@@ -47,7 +47,6 @@ class databasehelper {
     "accountid" Integer
     )
     ''');
-
   }
 
   Future<int> insert(String Table ,Map<String, dynamic> row) async {
@@ -68,6 +67,10 @@ class databasehelper {
   Future<List<Map<String, Object?>>> dataquery(String Table ,String accountid) async {
     var db = await instance.database;
     return db.query(Table,where: "accountid = ?",whereArgs: [accountid]);
+  }
+  Future<List<Map<String, Object?>>>queryview(String Table, int id)async{
+    var db = await instance.database;
+    return db.query(Table,where: "id = ?",whereArgs: [id]);
   }
   Future<int> Updata(String table ,Map<String,dynamic>row)async{
     var db = await instance.database;

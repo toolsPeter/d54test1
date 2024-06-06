@@ -17,4 +17,8 @@ class datamanager {
     var Data = await dbhelper.dataquery(_datatable, accountid);
     return Data;
   }
+  Future<List<Map<String, Object?>>> queryview(int id)async{
+    var Data = await dbhelper.queryview(_datatable, id);
+    return Data;
+  }
 }

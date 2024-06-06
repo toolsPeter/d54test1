@@ -132,7 +132,7 @@ class _loginpageState extends State<loginpage> {
                                           builder: (context) => homepage(
                                               Email: _account.text,
                                               nickname: nickname,
-                                              id: id)));
+                                              accountid: id)));
                                 } else {
                                   showDialog(
                                       context: context,

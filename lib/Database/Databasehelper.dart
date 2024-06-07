@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -76,5 +77,9 @@ class databasehelper {
     var db = await instance.database;
     var idd = row["id"];
     return db.update(table, row,where: "id = ?",whereArgs: [row]);
+  }
+  Future<int> updatafavourite(String id,bool favourite)async{
+    var db = await instance.database;
+    return db.update(_datatable,{"favourite":(favourite? 1 : 0)},where: "id = ?",whereArgs: [id]);
   }
 }

@@ -5,21 +5,24 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 
 class viewpage extends StatefulWidget {
+  final int id;
   final String projectname;
   final String username;
   final String password;
   final String URL;
   final String date;
+  final bool favourite;
 
 
-  viewpage({required this.projectname,required this.username,required this.password,required this.URL,required this.date});
+  viewpage({required this.id,required this.projectname,required this.username,required this.password,required this.URL,required this.date,required this.favourite});
 
   @override
   State<viewpage> createState() => _viewpageState();
 }
 
 class _viewpageState extends State<viewpage> {
-  bool _favourite = false;
+   bool _favourite = false;
+   late int _id ;
    late TextEditingController _projectname;
    late TextEditingController _username;
    late TextEditingController _password;
@@ -29,17 +32,18 @@ class _viewpageState extends State<viewpage> {
   var _URLerror = "";
   var _reg = RegExp(r'^(https?:\/\/)?([a-z,A-Z,0-9,-,_]+\.)+[a-z,A-Z]{2,6}$');
   double _val = 0;
-
   bool _passwordvis = true;
 
   @override
   void initState() {
     super.initState();
+    _id = widget.id;
     _projectname = TextEditingController(text: widget.projectname) ;
     _username = TextEditingController(text: widget.username) ;
     _password = TextEditingController(text: widget.password) ;
     _URL = TextEditingController(text: widget.URL) ;
     _date = widget.date;
+    _favourite = widget.favourite;
   }
 
   Widget build(BuildContext context) {
@@ -68,13 +72,28 @@ class _viewpageState extends State<viewpage> {
           height: height * 0.8,
           child: Column(
             children: [
-              TextField(
-                // keyboardType: TextInputType.none,。
-                enabled: false,
-                controller: _projectname,
-                decoration: InputDecoration(
-                  labelText: "項目名稱",),
+              Stack(
+                children: [
+                  Positioned(
+                      child: TextField(
+                        enabled: false,
+                        controller: _projectname,
+                        decoration: InputDecoration(
+                          labelText: "項目名稱",),
+                      ),
+                  ),
+                  Positioned(
+                      right: 0,
+                      child: IconButton(onPressed: (){
+                        _favourite = !_favourite;
+                        datamanager.instance.updatefavourite(_id.toString(), _favourite);
+                        setState(() {
+
+                        });
+                      }, icon: Icon(_favourite? Icons.star:Icons.star_border)))
+                ],
               ),
+              
               SizedBox(
                 height: 20,
               ),
@@ -108,6 +127,7 @@ class _viewpageState extends State<viewpage> {
                     inputFormatters: [LengthLimitingTextInputFormatter(100)],
                     controller: _password,
                     obscureText: _passwordvis,
+                    obscuringCharacter: "*",
                     decoration: InputDecoration(
                       labelText: "密碼",
                     ),

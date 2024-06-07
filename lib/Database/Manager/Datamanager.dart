@@ -21,4 +21,7 @@ class datamanager {
     var Data = await dbhelper.queryview(_datatable, id);
     return Data;
   }
+  void updatefavourite(String id ,bool favourite)async{
+    await dbhelper.updatafavourite(id, favourite);
+  }
 }

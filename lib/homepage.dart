@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:d54test1/viewpage.dart';
 import 'package:d54test1/addpage.dart';
@@ -251,12 +252,17 @@ class _homepageState extends State<homepage> {
                               subtitle: Text(index["username".toString()]),
                               onTap: () async{
                                 var data = await datamanager.instance.queryview(index["id"]);
+                                var id = int.parse(data[0]["id"].toString());
                                 var projectname = data[0]["projectname"].toString();
                                 var username = data[0]["username"].toString();
                                 var password = data[0]["password"].toString();
                                 var url = data[0]["URL"].toString();
                                 var date = data[0]["date"].toString();
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>viewpage(projectname: projectname, username: username, password: password, URL: url, date: date)));
+                                var favourite = (data[0]["favourite"]==0)? false:true;
+                                await Navigator.push(context, MaterialPageRoute(builder: (context)=>viewpage(id: id,projectname: projectname, username: username, password: password, URL: url, date: date,favourite: favourite,)));
+                                setState(() {
+
+                                });
                               },
                             ),
                             const Divider(color: Colors.black,),
@@ -274,12 +280,17 @@ class _homepageState extends State<homepage> {
                               subtitle: Text(index["username".toString()]),
                               onTap: () async{
                                 var data = await datamanager.instance.queryview(index["id"]);
+                                var id = int.parse(data[0]["id"].toString());
                                 var projectname = data[0]["projectname"].toString();
                                 var username = data[0]["username"].toString();
                                 var password = data[0]["password"].toString();
                                 var url = data[0]["URL"].toString();
                                 var date = data[0]["date"].toString();
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>viewpage(projectname: projectname, username: username, password: password, URL: url, date: date)));
+                                var favourite = (data[0]["favourite"]==0)? false:true;
+                                await Navigator.push(context, MaterialPageRoute(builder: (context)=>viewpage(id: id,projectname: projectname, username: username, password: password, URL: url, date: date,favourite: favourite,)));
+                                setState(() {
+
+                                });
                               },
                             ),
                             const Divider(color: Colors.black,),
